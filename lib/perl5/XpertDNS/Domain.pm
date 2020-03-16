@@ -133,15 +133,15 @@ sub update_record {
 
 sub delete_records {
     my ($self, $records) = @_;
-    my %data = (%{
+    my $data = {
         'state'         => 'logged_in',
         'mode'          => 'records',
-        'record_mode'   => 'delete_recs',
+        'record_mode'   => 'delete_recs_now',
         'domain'        => $self->domain,
-    });
-    # TODO: incomplete
+        'del_id'        => join(',', map { $_->record_id } @$records),
+    };
 
-    $self->req->post($self->baseurl, { data => \%data })->ok;
+    $self->req->post($self->baseurl, { data => $data })->ok;
 }
 
 sub hash {
