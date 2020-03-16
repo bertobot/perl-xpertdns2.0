@@ -10,7 +10,7 @@ sub init {
     my ($self, $args) = @_;
 
     $self->name($args->{name});
-    $self->type($args->{type});
+    $self->type($args->{type} || 'A');
     $self->address($args->{address});
     $self->distance($args->{distance});
     $self->weight($args->{weight});
